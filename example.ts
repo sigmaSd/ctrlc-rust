@@ -1,4 +1,4 @@
-import { setHandler } from "./src/ctrlc-rust.ts";
+import { setHandler } from "https://deno.land/x/ctrlc_rust/mod.ts";
 
 const ctrlcWorker = setHandler(() => {
   console.log("bye world");
