@@ -1,14 +1,10 @@
-import { setHandler } from "https://raw.githubusercontent.com/sigmaSd/ctrlc-rust/master/src/ctrlc-rust.ts";
+import { setHandler } from "./src/ctrlc-rust.ts";
 
-const _ctrlcGuard = setHandler(() => {
+const ctrlcWorker = setHandler(() => {
   console.log("bye world");
 });
 
-async function someOtherWork() {
-  while (true) {
-    console.log("Doing some other work");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
-}
-
-await someOtherWork();
+console.log("sleeping");
+Deno.sleepSync(5000);
+console.log("done");
+ctrlcWorker.terminate();
